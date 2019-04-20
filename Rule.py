@@ -10,5 +10,8 @@ class Rule:
     def getRuleName(self):
         return self.rule_name
 
+    def getRule(self):
+        return self.rule
+
     def __str__(self):
         return self.rule_name + " -> " + str(self.rule)
