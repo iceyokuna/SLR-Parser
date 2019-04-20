@@ -35,6 +35,24 @@ class Grammar:
                     r = r.union(self.getFirst(rule.getRule()[0]))
             return r
 
+    def getRuleList(self):
+        rule_list = []
+        for rule in self.rule:
+            rule_list.append((rule.getName(), rule.getRule()))
+        return rule_list.copy()
+
+    def getRule(self, rule_name):
+        lt = []
+        for rule in self.rule:
+            if(rule_name == rule.getName()):
+                lt.append(rule)
+        return rule
+    
+    def getStartRule(self):
+        for rule in self.rule:
+            if(rule.getName() == self.start):
+                return ((rule.getName(), rule.getRule()))
+
     def __str__(self):
         temp_str = "Nonterminal\n"
         temp_str += str(self.terminal) + '\n\n'    
@@ -49,4 +67,5 @@ class Grammar:
 
 #g = Grammar()
 #g.setup()
+#print(g.getStartRule())
 #print(g)

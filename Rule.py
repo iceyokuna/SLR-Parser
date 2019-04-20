@@ -11,7 +11,7 @@ class Rule:
         return self.rule_name
 
     def getRule(self):
-        return self.rule
+        return self.rule.copy()
 
     def __str__(self):
         return self.rule_name + " -> " + str(self.rule)
