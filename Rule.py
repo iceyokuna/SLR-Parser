@@ -7,7 +7,7 @@ class Rule:
         self.rule_name = rule[0]
         self.rule = rule[1:]
 
-    def getRuleName(self):
+    def getName(self):
         return self.rule_name
 
     def getRule(self):
