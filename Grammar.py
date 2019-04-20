@@ -25,9 +25,15 @@ class Grammar:
                 self.rule.append(rule)
             line_count += 1
 
-    def getFirst(self, rule_name):
-        #get first of rule_name
-        pass
+    def getFirst(self,symbol):
+        if symbol in self.terminal:
+            return {symbol}
+        elif symbol in self.nonterminal:
+            r = set()
+            for rule in self.rule:
+                if(symbol == rule.getName()):
+                    r = r.union(self.getFirst(rule.getRule()[0]))
+            return r
 
     def __str__(self):
         temp_str = "Nonterminal\n"
@@ -41,6 +47,6 @@ class Grammar:
             temp_str += str(rule) + '\n'
         return temp_str
 
-g = Grammar()
-g.setup()
-print(g)
+#g = Grammar()
+#g.setup()
+#print(g)
