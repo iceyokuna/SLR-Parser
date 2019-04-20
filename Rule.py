@@ -7,5 +7,8 @@ class Rule:
         self.rule_name = rule[0]
         self.rule = rule[1:]
 
+    def getRuleName(self):
+        return self.rule_name
+
     def __str__(self):
         return self.rule_name + " -> " + str(self.rule)
