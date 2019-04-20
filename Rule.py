@@ -6,7 +6,6 @@ class Rule:
     def setRule(self, rule):
         self.rule_name = rule[0]
         self.rule = rule[1:]
-    
-    def getFirst(self):
-        #return first of rule locally
-        pass
+
+    def __str__(self):
+        return self.rule_name + " -> " + str(self.rule)
