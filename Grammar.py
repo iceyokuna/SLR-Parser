@@ -7,10 +7,10 @@ class Grammar:
         self.terminal = set()
         self.rule = []
 
-    def setup(self):
+    def setup(self, filename):
         #read txt file
         #construct attr
-        grammar_file = open("grammar.txt")
+        grammar_file = open(filename)
         line_count = 0
         for line in grammar_file:
             line = line.strip('\n')
@@ -58,6 +58,9 @@ class Grammar:
 
     def getTerminal(self):
         return self.terminal.copy()
+
+    def getStart(self):
+        return self.start
 
     def __str__(self):
         temp_str = "Nonterminal\n"

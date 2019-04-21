@@ -9,6 +9,33 @@ class StateManager:
         self.transition = {}
         self.start = 0
         self.state_count = 0
+    
+    def getActionFunction(self):
+        #Action shift
+        actionFunction = {}
+        for transition in self.transition:
+            if(transition[1] in self.grammar.getTerminal()):
+                actionFunction[transition] = ('shift', self.transition[transition].getName())
+
+        #Action Reduce
+        for state in self.state_list:
+            closure_list = state.getClosure()
+            for kernal in closure_list:
+                if(kernal[3] == len(kernal[1])): #complete move ex. "AA." len = 2 dot_location = 2
+                    for lookahead in list(kernal[2]): # loop every lookahead to create transition
+                        if(kernal[0] == self.grammar.getStart()):
+                            actionFunction[(state.getName(),lookahead)] = ('reduce', ("Accept",kernal[1]))
+                            continue
+                        actionFunction[(state.getName(),lookahead)] = ('reduce', (kernal[0],kernal[1]))
+        return actionFunction.copy()
+
+    def getGotoFunction(self):
+        #Go function
+        actionFunction = {}
+        for transition in self.transition:
+            if(transition[1] in self.grammar.getNonterminal()):
+                actionFunction[transition] = ('goto', self.transition[transition].getName())
+        return actionFunction.copy()
 
     def setup(self):
         #set up grammar for this methods
@@ -23,7 +50,7 @@ class StateManager:
         self.state_list.append(startState)
         #set up expandable_list with moving pointer
         expandable_list = startState.getExpandable(self.grammar)
-        print(expandable_list)
+        ##print(expandable_list)
         #start expanding until complete
         
         while(len(expandable_list) > 0):
@@ -46,7 +73,7 @@ class StateManager:
                 expandable_list.pop(0)
                 expandable_list += state_temp.getExpandable(self.grammar)
                 self.state_count += 1
-        print("done")
+        ##print("done")
 
     def isRepeat(self, kernal_obj):
         for state_obj in self.state_list:
@@ -60,10 +87,9 @@ class StateManager:
                 return state_obj.getName()
         return None
 
-    def __str__(self):
-        return ""
-
-g = Grammar()
-g.setup()
-s = StateManager(g)
-s.setup()
+#g = Grammar()
+#g.setup()
+#s = StateManager(g)
+#s.setup()
+#print(s.getActionFunction())
+#print(s.getGotoFunction())

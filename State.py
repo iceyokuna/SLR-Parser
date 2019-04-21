@@ -9,10 +9,10 @@ class State:
         #end - no need to do closure
         pointer_location = int(self.kernal[3])
         if(pointer_location >= len(self.kernal[1])):
-            print(self.closure)
+            ##print(self.closure)
             return
         if(self.kernal[1][pointer_location] in grammar.getTerminal()):
-            print(self.closure)
+            ##print(self.closure)
             return
             
         lookahead = self.kernal[2]
@@ -30,7 +30,7 @@ class State:
                     lookahead = grammar.getFirst(rule[1][1])
                 #pop from expandable_list
             expandable_list.pop(0)
-        print(self.closure)
+        ##print(self.closure)
 
     def setName(self, state_name):
         self.state_name = state_name
@@ -44,6 +44,9 @@ class State:
     def getKernal(self):
         return self.kernal
 
+    def getClosure(self):
+        return self.closure.copy()
+
     def getExpandable(self, grammar):
         expandable_list = []
         for kernal in self.closure:
@@ -53,9 +56,3 @@ class State:
                 temp_kermal = (self.state_name,(kernal[0], kernal[1], kernal[2], kernal[3] + 1))
                 expandable_list.append(temp_kermal)
         return expandable_list.copy() #return expandable kernal
-
-    def isSameKernal(self, other_kernal):
-        return #bool
-
-    def __str__(self):
-        return ""
