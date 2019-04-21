@@ -42,16 +42,22 @@ class Grammar:
         return rule_list.copy()
 
     def getRule(self, rule_name):
-        lt = []
+        rule_list = []
         for rule in self.rule:
             if(rule_name == rule.getName()):
-                lt.append(rule)
-        return rule
+                rule_list.append((rule.getName(), rule.getRule()))
+        return rule_list.copy()
     
     def getStartRule(self):
         for rule in self.rule:
             if(rule.getName() == self.start):
                 return ((rule.getName(), rule.getRule()))
+
+    def getNonterminal(self):
+        return self.nonterminal.copy()
+
+    def getTerminal(self):
+        return self.terminal.copy()
 
     def __str__(self):
         temp_str = "Nonterminal\n"
