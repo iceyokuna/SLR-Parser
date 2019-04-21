@@ -1,0 +1,10 @@
+        #testing closure methods of state
+        #startState.setKernal(("S'", ['S'],{'$'},1))  #state 1
+        #startState.setKernal(("S", ['C','C'],{'$'},1))  #state 2
+        #startState.setKernal(("C", ['c','C'],{'c','d'},1))  #state 3
+        #startState.setKernal(("C", ['d'],{'c','d'},1))  #state 4
+        #startState.setKernal(("S", ['C','C'],{'$'},2))  #state 5
+        #startState.setKernal(("C", ['c','C'],{'$'},1))  #state 6
+        #startState.setKernal(("C", ['d'],{'$'},1))  #state 7
+        #startState.setKernal(("C", ['c','C'],{'c','d'},2))  #state 8
+        #startState.setKernal(("C", ['c','C'],{'$'},2))  #state 9
