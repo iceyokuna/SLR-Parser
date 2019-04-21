@@ -50,7 +50,7 @@ class State:
             pointer_location = kernal[3]
             #check condition : not reach end of kernal
             if(pointer_location < len(kernal[1])):
-                temp_kermal = (kernal[0], kernal[1], kernal[2], kernal[3] + 1)
+                temp_kermal = (self.state_name,(kernal[0], kernal[1], kernal[2], kernal[3] + 1))
                 expandable_list.append(temp_kermal)
         return expandable_list.copy() #return expandable kernal
 
