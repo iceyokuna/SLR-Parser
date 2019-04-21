@@ -24,7 +24,7 @@ class StateManager:
                 if(kernal[3] == len(kernal[1])): #complete move ex. "AA." len = 2 dot_location = 2
                     for lookahead in list(kernal[2]): # loop every lookahead to create transition
                         if(kernal[0] == self.grammar.getStart()):
-                            actionFunction[(state.getName(),lookahead)] = ('reduce', ("Accept",kernal[1]))
+                            actionFunction[(state.getName(),lookahead)] = ('reduce', ("accept",kernal[1]))
                             continue
                         actionFunction[(state.getName(),lookahead)] = ('reduce', (kernal[0],kernal[1]))
         return actionFunction.copy()
